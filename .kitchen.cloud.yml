@@ -1,0 +1,36 @@
+---
+driver:
+  name: ec2
+  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
+  require_chef_omnibus: true
+  subnet_id: <%= ENV['AWS_AVAILABILITY_SUBNET'] %>
+  region: <%= ENV['AWS_REGION'] %>
+  flavor_id: m3.medium
+  security_group_ids: ["<%= ENV['AWS_SECURITY_GROUP'] %>"]
+  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] %>
+  iam_profile_name: <%= ENV['AWS_IAM_PROFILE'] %>
+  tags:
+    Name: Test-Kitchen
+    Department: Development
+    Environment: development
+    Type: Node
+    CreatedBy: test-kitchen
+
+provisioner:
+  name: chef_zero
+  kitchen_root: /tmp/kitchen
+
+platforms:
+  - name: amazon-2014.09.01
+    driver_plugin: ec2
+    driver_config:
+      image_id: ami-9c7ad8eb
+      username: ec2-user
+
+suites:
+  - name: default
+    run_list:
+      - recipe[openldap_mm::default]
+    attributes:

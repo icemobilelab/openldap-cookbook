@@ -1,0 +1,7 @@
+DEPENDENCIES
+  openldap_mm
+    path: .
+    metadata: true
+
+GRAPH
+  openldap_mm (0.0.1)
