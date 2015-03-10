@@ -33,6 +33,13 @@ package 'openssl' do
   action :upgrade
 end
 
+template '/etc/sysconfig/ldap' do
+  source 'ldap_sysconfig.erb'
+  mode 0640
+  owner 'root'
+  group 'root'
+end
+
 directory "#{node['openldap_mm']['dir']}/slapd.d" do
   recursive true
   action :delete
@@ -59,6 +66,13 @@ execute 'slapd-config-convert-touch' do
   action :nothing
 end
 
+execute 'slapd-add-default' do
+  command 'echo "" | slapadd -f /etc/openldap/slapd.conf'
+  user 'ldap'
+  action :nothing
+  not_if { ::File.exist?("#{node['openldap_mm']['dir']}/.cleaned") }
+end
+
 execute 'slapd-config-convert' do
   command "slaptest -f #{node['openldap_mm']['dir']}/slapd.conf -F #{node['openldap_mm']['dir']}/slapd.d/"
   user 'ldap'
@@ -68,7 +82,7 @@ execute 'slapd-config-convert' do
 end
 
 template "#{node['openldap_mm']['dir']}/slapd.conf" do
-  source 'slapd.conf.erb'
+  source 'slapd_mm.conf.erb'
   mode 0640
   owner 'ldap'
   group 'ldap'

@@ -16,3 +16,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+if node['openldap_mm']['mode'] == 'single'
+  include_recipe 'openldap_mm::smode'
+elsif node['openldap_mm']['mode'] == 'mm'
+  include_recipe 'openldap_mm::mmode'
+end

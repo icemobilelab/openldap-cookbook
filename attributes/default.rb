@@ -18,13 +18,13 @@
 # limitations under the License.
 
 default['openldap_mm']['basedn'] = 'dc=foobar,dc=bar'
-default['openldap_mm']['server'] = 'ldap1.foobar.bar'
 default['openldap_mm']['tls_enabled'] = false
-default['openldap_mm']['pam_password'] = 'md5'
+default['openldap_mm']['port'] = '389'
 
 default['openldap_mm']['rootpw'] = '{SSHA}6BjlvtSbVCL88li8IorkqMSofkLio58/'
 
 default['openldap_mm']['dir'] = '/etc/openldap'
+default['openldap_mm']['mode'] = 'mm'
 
 default['openldap_mm']['ssl_cert'] = nil
 default['openldap_mm']['ssl_key'] = nil

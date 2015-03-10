@@ -23,14 +23,14 @@ provisioner:
   kitchen_root: /tmp/kitchen
 
 platforms:
-  - name: amazon-2014.09.01
+  - name: amazon-2014.09.02
     driver_plugin: ec2
     driver_config:
-      image_id: ami-9c7ad8eb
+      image_id: ami-7b3db00c
       username: ec2-user
 
 suites:
   - name: default
     run_list:
-      - recipe[openldap_mm::default]
+      - recipe[openldap_mm::smode]
     attributes:

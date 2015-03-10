@@ -4,4 +4,4 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  openldap_mm (0.0.1)
+  openldap_mm (0.1.1)
