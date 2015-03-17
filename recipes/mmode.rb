@@ -66,12 +66,13 @@ execute 'slapd-config-convert-touch' do
   action :nothing
 end
 
-execute 'slapd-add-default' do
-  command 'echo "" | slapadd -f /etc/openldap/slapd.conf'
-  user 'ldap'
-  action :nothing
-  not_if { ::File.exist?("#{node['openldap_mm']['dir']}/.cleaned") }
-end
+# Maybe needed for later usage
+# execute 'slapd-add-default' do
+#   command 'echo "" | slapadd -f /etc/openldap/slapd.conf'
+#   user 'ldap'
+#   action :nothing
+#   not_if { ::File.exist?("#{node['openldap_mm']['dir']}/.cleaned") }
+# end
 
 execute 'slapd-config-convert' do
   command "slaptest -f #{node['openldap_mm']['dir']}/slapd.conf -F #{node['openldap_mm']['dir']}/slapd.d/"
@@ -88,6 +89,7 @@ template "#{node['openldap_mm']['dir']}/slapd.conf" do
   group 'ldap'
   notifies :stop, 'service[slapd]', :immediately
   notifies :run, 'execute[slapd-config-convert]'
+  not_if { ::File.exist?("#{node['openldap_mm']['dir']}/.cleaned") }
 end
 
 template '/etc/rsyslog.d/ldap.conf' do

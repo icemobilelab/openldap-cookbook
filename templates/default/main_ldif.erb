@@ -1,0 +1,21 @@
+dn: <%= node['openldap_mm']['basedn'] %>
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: <%= node['openldap_mm']['domain'] %> Organization
+dc: <%= node['openldap_mm']['domain'] %>
+description: <%= node['openldap_mm']['domain'] %> default domain
+
+
+dn: <%= node['openldap_mm']['user_ou'] %>,<%= node['openldap_mm']['basedn'] %>
+objectClass: organizationalUnit
+ou: Users
+
+
+dn: <%= node['openldap_mm']['group_ou'] %>,<%= node['openldap_mm']['basedn'] %>
+objectClass: organizationalUnit
+ou: Groups
+
+dn: <%= node['openldap_mm']['admin_ou'] %>,<%= node['openldap_mm']['basedn'] %>
+objectClass: organizationalUnit
+ou: Admins

@@ -11,23 +11,24 @@ platforms:
 suites:
   - name: server1
     run_list:
+      - recipe[openldap_mm::hosts]
       - recipe[openldap_mm::default]
+      - recipe[openldap_mm::ldif]
     driver_config:
       network:
-        - ["forwarded_port", {guest: 389, host: 1389}]
-        - ['private_network', {ip: '192.168.33.33'}]
+        - ["private_network", {ip: "192.168.33.33"}]
     attributes:
       openldap_mm:
-        server1: "192.168.33.33"
-        server2: "192.168.33.34"
+        server1: "server1-centos-66.vagrantup.com"
+        server2: "server2-centos-66.vagrantup.com"
   - name: server2
     run_list:
+      - recipe[openldap_mm::hosts]
       - recipe[openldap_mm::default]
     driver_config:
       network:
-        - ["forwarded_port", {guest: 389, host: 2389}]
-        - ['private_network', {ip: '192.168.33.34'}]
+        - ["private_network", {ip: "192.168.33.34"}]
     attributes:
       openldap_mm:
-        server1: "192.168.33.33"
-        server2: "192.168.33.34"
+        server1: "server1-centos-66.vagrantup.com"
+        server2: "server2-centos-66.vagrantup.com"

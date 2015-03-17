@@ -122,7 +122,7 @@ database	bdb
 suffix		"<%= node['openldap_mm']['basedn'] %>"
 checkpoint	1024 15
 rootdn		"cn=admin,<%= node['openldap_mm']['basedn'] %>"
-rootpw		<%= node['openldap_mm']['rootpw'] %>
+rootpw		<%= node['openldap_mm']['clearpw'] %>
 loglevel	256
 sizelimit	unlimited
 
@@ -157,7 +157,7 @@ syncrepl        rid=1
                 scope=sub 
                 bindmethod=simple
                 binddn="cn=admin,<%= node['openldap_mm']['basedn'] %>"
-                credentials="<%= node['openldap_mm']['rootpw'] %>"
+                credentials="<%= node['openldap_mm']['clearpw'] %>""
 syncrepl        rid=2
                 provider="ldap://<%= node['openldap_mm']['server2'] %>:<%= node['openldap_mm']['port'] %>/"
                 type=refreshAndPersist
@@ -169,5 +169,5 @@ syncrepl        rid=2
                 searchbase="<%= node['openldap_mm']['basedn'] %>"
                 bindmethod=simple
                 binddn="cn=admin,<%= node['openldap_mm']['basedn'] %>"
-                credentials="<%= node['openldap_mm']['rootpw'] %>"
+                credentials="<%= node['openldap_mm']['clearpw'] %>"
 MirrorMode      on

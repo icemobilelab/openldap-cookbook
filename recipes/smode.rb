@@ -74,6 +74,7 @@ template "#{node['openldap_mm']['dir']}/slapd.conf" do
   group 'ldap'
   notifies :stop, 'service[slapd]', :immediately
   notifies :run, 'execute[slapd-config-convert]'
+  not_if { ::File.exist?("#{node['openldap_mm']['dir']}/.cleaned") }
 end
 
 template '/etc/rsyslog.d/ldap.conf' do

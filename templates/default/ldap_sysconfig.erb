@@ -23,7 +23,7 @@ SLAPD_LDAPS=no
 # - it isn't overwritten by settings of $SLAPD_LDAP, $SLAPD_LDAPS and $SLAPD_LDAPI options
 # example: SLAPD_URLS="ldapi:///var/lib/ldap_root/ldapi ldapi:/// ldaps:///"
 # default: empty
-SLAPD_URLS="ldap://<%= node['openldap_mm']['server1'] %>:<%= node['openldap_mm']['port'] %>/"
+SLAPD_URLS="ldap://<%= node['fqdn'] %>:<%= node['openldap_mm']['port'] %>/ ldap://localhost/"
 
 # Maximum allowed time to wait for slapd shutdown on 'service ldap stop' (in seconds)
 #SLAPD_SHUTDOWN_TIMEOUT=3

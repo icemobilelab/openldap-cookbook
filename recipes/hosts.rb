@@ -1,7 +1,7 @@
 #
 # Author:: Syam Sampatsing (syam@icemobile.com)
 # Cookbook Name:: openldap_mm
-# Recipe:: default
+# Recipe:: hosts
 #
 # Copyright 2014, IceMobile.
 #
@@ -16,21 +16,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# This is only for kitchen to allow DNS to work!!!!!
 
-default['openldap_mm']['domain'] = 'foobar'
-default['openldap_mm']['basedn'] = 'dc=foobar,dc=bar'
-default['openldap_mm']['tls_enabled'] = false
-default['openldap_mm']['port'] = '389'
+hostsfile_entry '192.168.33.33' do
+  hostname 'server1-centos-66.vagrantup.com'
+  unique true
+end
 
-default['openldap_mm']['clearpw'] = 'foobarpassword'
-
-default['openldap_mm']['dir'] = '/etc/openldap'
-default['openldap_mm']['mode'] = 'mm'
-
-default['openldap_mm']['ssl_cert'] = nil
-default['openldap_mm']['ssl_key'] = nil
-default['openldap_mm']['cafile'] = nil
-
-default['openldap_mm']['admin_ou'] = 'ou=Admins'
-default['openldap_mm']['group_ou'] = 'ou=Groups'
-default['openldap_mm']['user_ou'] = 'ou=Users'
+hostsfile_entry '192.168.33.34' do
+  hostname 'server2-centos-66.vagrantup.com'
+  unique true
+end
