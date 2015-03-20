@@ -1,5 +1,5 @@
 execute 'ldapadd' do
-  command "ldapadd -x -D cn=admin,#{node['openldap_mm']['basedn']} -w #{node['openldap_mm']['clearpw']} -f #{node['openldap_mm']['dir']}/base.ldif -H ldap://localhost"
+  command "ldapadd -c -x -D cn=admin,#{node['openldap_mm']['basedn']} -w #{node['openldap_mm']['clearpw']} -f #{node['openldap_mm']['dir']}/base.ldif -h #{node['openldap_mm']['server1']} -p #{node['openldap_mm']['port']}"
   user 'root'
   action :nothing
 end

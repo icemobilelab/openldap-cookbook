@@ -22,3 +22,5 @@ if node['openldap_mm']['mode'] == 'single'
 elsif node['openldap_mm']['mode'] == 'mm'
   include_recipe 'openldap_mm::mmode'
 end
+
+include_recipe 'openldap_mm::ldif'
