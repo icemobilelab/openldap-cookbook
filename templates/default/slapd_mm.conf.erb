@@ -157,7 +157,7 @@ syncrepl        rid=1
                 scope=sub 
                 bindmethod=simple
                 binddn="cn=admin,<%= node['openldap_mm']['basedn'] %>"
-                credentials="<%= node['openldap_mm']['clearpw'] %>""
+                credentials="<%= node['openldap_mm']['clearpw'] %>"
 syncrepl        rid=2
                 provider="ldap://<%= node['openldap_mm']['server2'] %>:<%= node['openldap_mm']['port'] %>/"
                 type=refreshAndPersist
