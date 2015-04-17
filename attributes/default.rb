@@ -17,6 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+default['openldap_mm']['servername'] = node['fqdn']
+default['openldap_mm']['server1'] = nil
+default['openldap_mm']['server2'] = nil
+
 default['openldap_mm']['domain'] = 'foobar'
 default['openldap_mm']['basedn'] = 'dc=foobar,dc=bar'
 default['openldap_mm']['tls_enabled'] = false
