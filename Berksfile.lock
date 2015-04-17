@@ -5,5 +5,5 @@ DEPENDENCIES
 
 GRAPH
   hostsfile (2.4.5)
-  openldap_mm (0.1.1)
+  openldap_mm (0.1.3)
     hostsfile (= 2.4.5)
